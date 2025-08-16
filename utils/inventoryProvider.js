@@ -1,25 +1,15 @@
-import inventory from './inventory'
-
-/*
-Inventory items should adhere to the following schema:
-type Product {
-  id: ID!
-  categories: [String]!
-  price: Float!
-  name: String!
-  image: String!
-  description: String!
-  currentInventory: Int!
-  brand: String
-  sku: ID
-}
-*/
+import inventory from './inventory';
 
 async function fetchInventory() {
-  // const inventory = API.get(apiUrl)
-  return Promise.resolve(inventory)
+  return Promise.resolve(
+    inventory.map(item => ({
+      ...item,
+      price: Number(item.price),
+    }))
+  );
 }
 
 export {
-  fetchInventory, inventory as staticInventory
-}
+  fetchInventory,
+  inventory as staticInventory
+};

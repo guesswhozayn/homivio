@@ -1,19 +1,14 @@
-function inventoryByCategory (inventory) {
+function inventoryByCategory(inventory) {
   return inventory.reduce((acc, next) => {
-    const categories = next.categories
-    categories.forEach(c => {
+    next.categories.forEach(c => {
       if (acc[c]) {
-        acc[c].items.push(next)
+        acc[c].items.push(next);
       } else {
-        acc[c] = {}
-        acc[c].items = []
-        acc[c].items.push(next)
+        acc[c] = { items: [next] };
       }
-    })
-    return acc
-  }, {})
+    });
+    return acc;
+  }, {});
 }
 
-export {
-  inventoryByCategory
-}
+export { inventoryByCategory };

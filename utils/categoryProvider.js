@@ -1,14 +1,17 @@
 import inventory from './inventory'
+// Assuming each item in inventory has a categories property (array of strings)
 
-async function fetchCategories () {
+async function fetchCategories() {
   const categories = inventory.reduce((acc, next) => {
-    next.categories.map(category => {
-      if (acc.includes(category)) return
-      acc.push(category)
+    next.categories.forEach(category => {
+      if (!acc.includes(category)) {
+        acc.push(category)
+      }
     })
     return acc
   }, [])
-  return Promise.resolve(categories)
+
+  return categories
 }
 
 export default fetchCategories
