@@ -13,7 +13,7 @@ function slugify(input) {
     .replace(/-+$/, '');
 }
 
-function titleIfy(slug) {
+function titleify(slug) {
   return slug
     .split('-')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -28,6 +28,6 @@ function getTrimmedString(input, length = 8) {
 
 export {
   slugify,
-  titleIfy,
+  titleify,
   getTrimmedString
 };

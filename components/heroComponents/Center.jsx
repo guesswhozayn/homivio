@@ -16,7 +16,7 @@ const Center = ({ price, title, link }) => {
         {title}
       </p>
       <p className="py-6 tracking-wide">
-        FROM <span>${price}</span>
+        FROM <span>PKR{price}</span>
       </p>
       <Button onClick={navigate} title="Shop Now" />
     </div>

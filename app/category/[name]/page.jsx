@@ -1,6 +1,5 @@
-import { Metadata } from 'next';
 import ListItem from '@/components/ListItem';
-import { titleIfy, slugify } from '@/utils/helpers';
+import { titleify, slugify } from '@/utils/helpers';
 import fetchCategories from '@/utils/categoryProvider';
 import inventoryForCategory from '@/utils/inventoryForCategory';
 import CartLink from '@/components/CartLink';
@@ -16,7 +15,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const category = resolvedParams.name.replace(/-/g, ' ');
-  const title = titleIfy(category);
+  const title = titleify(category);
   
   return {
     title: `ECommerce - ${title}`,
@@ -31,7 +30,7 @@ export default async function Category({ params }) {
   const resolvedParams = await params;
   const category = resolvedParams.name.replace(/-/g, ' ');
   const inventory = await inventoryForCategory(category);
-  const title = titleIfy(category);
+  const title = titleify(category);
 
   return (
     <>
