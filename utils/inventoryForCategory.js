@@ -1,10 +1,18 @@
-import { fetchInventory } from './inventoryProvider'
-import { inventoryByCategory } from './inventoryByCategory'
+import { fetchInventory } from './inventoryProvider';
+import { inventoryByCategory } from './inventoryByCategory';
 
-async function inventoryForCategory (category) {
-  const inventory = await fetchInventory()
-  const byCategory = inventoryByCategory(inventory)
-  return byCategory[category].items
+function normalizeInventory(items) {
+  return items.map(item => ({
+    ...item,
+    price: typeof item.price === 'string' ? item.price : String(item.price),
+  }));
 }
 
-export default inventoryForCategory
+async function inventoryForCategory(category) {
+  const inventory = await fetchInventory();
+  const normalized = normalizeInventory(inventory);
+  const byCategory = inventoryByCategory(normalized);
+  return byCategory[category]?.items ?? [];
+}
+
+export default inventoryForCategory;

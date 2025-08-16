@@ -42,9 +42,9 @@ let inventory = [
   { categories: ['on sale', 'chairs'], name: 'Mint Beige Workchair', price: '550', image: '/products/chair10.png', description: 'You don’t have to go outside to be rugged. The Cigar rawhide sofa features a sturdy corner-blocked wooden frame and raw seams for that Malboro-person look. This brown leather sofa is cozy in a cottage, cabin, or a condo. And the leather (the leather!) becomes more beautiful with use: subtle character markings such as insect bites, healed scars, and grain variation reflects a real vintage. Saddle up and pass the remote.', brand: 'Jason Bourne', currentInventory: 31 },  // { 
 ]
 
-inventory.map(i => {
-  i.id = uuid()
-  return i
-})
+inventory = inventory.map(item => ({
+  ...item,
+  id: uuid(),
+}))
 
 export default inventory
