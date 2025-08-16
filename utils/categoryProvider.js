@@ -1,5 +1,4 @@
 import inventory from './inventory'
-// Assuming each item in inventory has a categories property (array of strings)
 
 async function fetchCategories() {
   const categories = inventory.reduce((acc, next) => {
@@ -10,7 +9,6 @@ async function fetchCategories() {
     })
     return acc
   }, [])
-
   return categories
 }
 

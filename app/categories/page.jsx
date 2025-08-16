@@ -5,10 +5,10 @@ import CartLink from '@/components/CartLink';
 import { fetchInventory } from '@/utils/inventoryProvider';
 
 export const metadata = {
-  title: 'Jamstack ECommerce - All Categories',
-  description: 'Jamstack ECommerce - All categories',
+  title: 'ECommerce - All Categories',
+  description: 'ECommerce - All categories',
   openGraph: {
-    title: 'Jamstack ECommerce - All Categories',
+    title: 'ECommerce - All Categories',
   },
 };
 
