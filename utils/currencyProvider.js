@@ -1,3 +1,3 @@
-const DENOMINATION = '$'
+const DENOMINATION = 'PKR'
 
 export default DENOMINATION
