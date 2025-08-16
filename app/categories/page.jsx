@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { titleIfy, slugify } from '@/utils/helpers';
+import { titleify, slugify } from '@/utils/helpers';
 import { DisplayMedium } from '@/components';
 import CartLink from '@/components/CartLink';
 import { fetchInventory } from '@/utils/inventoryProvider';
@@ -50,7 +50,7 @@ export default async function Categories() {
                   key={index}
                   imageSrc={category.image}
                   subtitle={`${category.itemCount} items`}
-                  title={titleIfy(category.name)}
+                  title={titleify(category.name)}
                   link={`/category/${slugify(category.name)}`}
                 />
               ))

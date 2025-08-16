@@ -1,5 +1,5 @@
 import { Center, Footer, Tag, Showcase, DisplaySmall, DisplayMedium } from '@/components';
-import { titleIfy, slugify } from '@/utils/helpers';
+import { titleify, slugify } from '@/utils/helpers';
 import { fetchInventory } from '@/utils/inventoryProvider';
 import CartLink from '@/components/CartLink';
 
@@ -37,11 +37,11 @@ export default async function Home() {
           <div className="pt-4 pl-2 sm:pt-12 sm:pl-12 flex flex-col">
             <Tag year="2024" category="SOFAS" />
             <Center
-              price="200"
+              price="50000"
               title={displayInventory[2].name}
               link={`/product/${slugify(displayInventory[2].name)}`}
             />
-            <Footer designer="Jason Bourne" />
+            <Footer designer="Zayn" />
           </div>
           <div className="flex flex-1 justify-center items-center relative">
             <Showcase imageSrc={displayInventory[2].image} />
@@ -56,7 +56,7 @@ export default async function Home() {
             key={index}
             imageSrc={category.image}
             subtitle={`${category.itemCount} items`}
-            title={titleIfy(category.name)}
+            title={titleify(category.name)}
             link={`/category/${slugify(category.name)}`}
           />
         ))}
