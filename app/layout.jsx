@@ -8,7 +8,7 @@ import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata = {
-  title: 'JAMstack E-commerce',
+  title: 'E-commerce',
   description: 'Modern e-commerce built with Next.js',
 };
 
@@ -86,7 +86,7 @@ async function RootLayout({ children }) {
               border-solid
               border-t border-gray-300
             ">
-              <span className="block text-gray-700 text-xs">Copyright © 2024 JAMstack Ecommerce. All rights reserved.</span>
+              <span className="block text-gray-700 text-xs">Copyright © 2024 Ecommerce. All rights reserved.</span>
               <div className="
                 sm:justify-end sm:m-0
                 flex flex-1 mt-4

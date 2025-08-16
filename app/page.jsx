@@ -1,14 +1,13 @@
-import { Metadata } from 'next';
 import { Center, Footer, Tag, Showcase, DisplaySmall, DisplayMedium } from '@/components';
 import { titleIfy, slugify } from '@/utils/helpers';
 import { fetchInventory } from '@/utils/inventoryProvider';
 import CartLink from '@/components/CartLink';
 
 export const metadata = {
-  title: 'Jamstack ECommerce',
-  description: 'Jamstack ECommerce Next provides a way to quickly get up and running with a fully configurable ECommerce site using Next.js.',
+  title: 'ECommerce',
+  description: 'ECommerce Next provides a way to quickly get up and running with a fully configurable ECommerce site using Next.js.',
   openGraph: {
-    title: 'Jamstack ECommerce',
+    title: 'ECommerce',
   },
 };
 

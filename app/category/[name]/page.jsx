@@ -19,10 +19,10 @@ export async function generateMetadata({ params }) {
   const title = titleIfy(category);
   
   return {
-    title: `Jamstack ECommerce - ${title}`,
-    description: `Jamstack ECommerce - ${title}`,
+    title: `ECommerce - ${title}`,
+    description: `ECommerce - ${title}`,
     openGraph: {
-      title: `Jamstack ECommerce - ${title}`,
+      title: `ECommerce - ${title}`,
     },
   };
 }
