@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import SignUp from '@/components/formComponents/SignUp';
-import ConfirmSignUp from '@/components/formComponents/ConfirmSignUp';
-import SignIn from '@/components/formComponents/SignIn';
-import Inventory from '@/components/Inventory';
+import React, { useState } from "react";
+import SignUp from "@/components/formComponents/SignUp";
+import ConfirmSignUp from "@/components/formComponents/ConfirmSignUp";
+import SignIn from "@/components/formComponents/SignIn";
+import Inventory from "@/components/Inventory";
 
 export default function Admin() {
-  const [formState, setFormState] = useState('signUp'); // Removed TypeScript type
+  const [formState, setFormState] = useState("signUp");
   const [isAdmin, setIsAdmin] = useState(false);
 
   const toggleFormState = (newFormState) => {
@@ -17,47 +17,37 @@ export default function Admin() {
   const signUp = async (form) => {
     const { username, email, password } = form;
     // sign up logic would go here
-    setFormState('confirmSignUp');
+    setFormState("confirmSignUp");
   };
 
   const confirmSignUp = async (form) => {
     const { username, authcode } = form;
     // confirm sign up logic would go here
-    setFormState('signIn');
+    setFormState("signIn");
   };
 
   const signIn = async (form) => {
     const { username, password } = form;
     // sign in logic would go here
-    setFormState('signedIn');
+    setFormState("signedIn");
     setIsAdmin(true);
   };
 
   const signOut = async () => {
     // sign out logic would go here
-    setFormState('signUp');
+    setFormState("signUp");
     setIsAdmin(false);
   };
 
   const renderForm = () => {
     switch (formState) {
-      case 'signUp':
-        return (
-          <SignUp
-            signUp={signUp}
-            toggleFormState={toggleFormState}
-          />
-        );
-      case 'confirmSignUp':
+      case "signUp":
+        return <SignUp signUp={signUp} toggleFormState={toggleFormState} />;
+      case "confirmSignUp":
         return <ConfirmSignUp confirmSignUp={confirmSignUp} />;
-      case 'signIn':
-        return (
-          <SignIn
-            signIn={signIn}
-            toggleFormState={toggleFormState}
-          />
-        );
-      case 'signedIn':
+      case "signIn":
+        return <SignIn signIn={signIn} toggleFormState={toggleFormState} />;
+      case "signedIn":
         return isAdmin ? (
           <Inventory signOut={signOut} />
         ) : (

@@ -1,12 +1,12 @@
-import ListItem from '@/components/ListItem';
-import { titleify, slugify } from '@/utils/helpers';
-import fetchCategories from '@/utils/categoryProvider';
-import inventoryForCategory from '@/utils/inventoryForCategory';
-import CartLink from '@/components/CartLink';
+import ListItem from "@/components/ListItem";
+import { titleify, slugify } from "@/utils/helpers";
+import fetchCategories from "@/utils/categoryProvider";
+import inventoryForCategory from "@/utils/inventoryForCategory";
+import CartLink from "@/components/CartLink";
 
 export async function generateStaticParams() {
   const categories = await fetchCategories();
-  
+
   return categories.map((category) => ({
     name: slugify(category),
   }));
@@ -14,21 +14,21 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
-  const category = resolvedParams.name.replace(/-/g, ' ');
+  const category = resolvedParams.name.replace(/-/g, " ");
   const title = titleify(category);
-  
+
   return {
-    title: `ECommerce - ${title}`,
-    description: `ECommerce - ${title}`,
+    title: `Homivio - ${title}`,
+    description: `Homivio - ${title}`,
     openGraph: {
-      title: `ECommerce - ${title}`,
+      title: `Homivio - ${title}`,
     },
   };
 }
 
 export default async function Category({ params }) {
   const resolvedParams = await params;
-  const category = resolvedParams.name.replace(/-/g, ' ');
+  const category = resolvedParams.name.replace(/-/g, " ");
   const inventory = await inventoryForCategory(category);
   const title = titleify(category);
 
@@ -43,19 +43,17 @@ export default async function Category({ params }) {
 
           <div>
             <div className="flex flex-1 flex-wrap flex-row">
-              {
-                inventory.map((item, index) => {
-                  return (
-                    <ListItem
-                      key={index}
-                      link={`/product/${slugify(item.name)}`}
-                      title={item.name}
-                      price={item.price}
-                      imageSrc={item.image}
-                    />
-                  )
-                })
-              }
+              {inventory.map((item, index) => {
+                return (
+                  <ListItem
+                    key={index}
+                    link={`/product/${slugify(item.name)}`}
+                    title={item.name}
+                    price={item.price}
+                    imageSrc={item.image}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>
