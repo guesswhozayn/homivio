@@ -1,22 +1,23 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { slugify } from '@/utils/helpers';
-import { navItemLength } from '@/ecommerce.config';
-import { ToastContainer } from 'react-toastify';
-import fetchCategories from '@/utils/categoryProvider';
-import '../styles/globals.css';
-import 'react-toastify/dist/ReactToastify.css';
+import Link from "next/link";
+import Image from "next/image";
+import { slugify } from "@/utils/helpers";
+import { navItemLength } from "@/ecommerce.config";
+import { ToastContainer } from "react-toastify";
+import fetchCategories from "@/utils/categoryProvider";
+import "../styles/globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
-  title: 'E-commerce',
-  description: 'Modern e-commerce built with Next.js',
+  title: "Homivio - Modern E-commerce",
+  description: "Modern e-commerce built with Next.js",
 };
 
 async function RootLayout({ children }) {
   const categories = await fetchCategories();
-  const displayCategories = categories.length > navItemLength 
-    ? categories.slice(0, navItemLength) 
-    : categories;
+  const displayCategories =
+    categories.length > navItemLength
+      ? categories.slice(0, navItemLength)
+      : categories;
 
   return (
     <html lang="en">
@@ -24,27 +25,28 @@ async function RootLayout({ children }) {
         <div>
           <nav>
             <div className="flex justify-center">
-              <div className="
+              <div
+                className="
                 mobile:px-12 sm:flex-row sm:pt-12 sm:pb-6 desktop:px-0
-                px-4 pt-8 flex flex-col w-fw
-              ">
+                px-4 pt-8 flex flex-col w-fw"
+              >
                 <div className="mb-4 sm:mr-16 max-w-48 sm:max-w-none">
                   <Link href="/" aria-label="Home">
-                    <Image 
-                      src="/logo.png" 
-                      alt="logo" 
-                      width={90} 
+                    <Image
+                      src="/homivio.png"
+                      alt="logo"
+                      width={90}
                       height={28}
                       priority
                     />
                   </Link>
                 </div>
-                <div className="flex flex-wrap mt-1">
+                <div className="flex flex-wrap mt-1 md:mt-2">
                   <Link href="/" aria-label="Home">
-                    <p className="
-                      sm:mr-8 sm:mb-0
-                      mb-4 text-left text-smaller mr-4
-                    ">
+                    <p
+                      className="
+                      sm:mr-8 sm:mb-0 mb-4 text-left text-smaller mr-4"
+                    >
                       Home
                     </p>
                   </Link>
@@ -54,19 +56,23 @@ async function RootLayout({ children }) {
                       key={index}
                       aria-label={category}
                     >
-                      <p className="
+                      <p
+                        className="
                           sm:mr-8 sm:mb-0
                           mb-4 text-left text-smaller mr-4
-                        ">
+                        "
+                      >
                         {category.charAt(0).toUpperCase() + category.slice(1)}
                       </p>
                     </Link>
                   ))}
                   <Link href="/categories" aria-label="All categories">
-                    <p className="
+                    <p
+                      className="
                       sm:mr-8 sm:mb-0
                       mb-4 text-left text-smaller mr-4 
-                    ">
+                    "
+                    >
                       All
                     </p>
                   </Link>
@@ -78,19 +84,25 @@ async function RootLayout({ children }) {
             <main className="w-fw">{children}</main>
           </div>
           <footer className="flex justify-center">
-            <div className="
+            <div
+              className="
               sm:flex-row sm:items-center
               flex-col
               flex w-fw px-12 py-8
               desktop:px-0
               border-solid
               border-t border-gray-300
-            ">
-              <span className="block text-gray-700 text-xs">Copyright © 2024 Ecommerce. All rights reserved.</span>
-              <div className="
+            "
+            >
+              <span className="block text-gray-700 text-xs">
+                Copyright © 2024 HOMIVIO. All rights reserved.
+              </span>
+              <div
+                className="
                 sm:justify-end sm:m-0
                 flex flex-1 mt-4
-              ">
+              "
+              >
                 <Link href="/admin" aria-label="Admin panel">
                   <p className="text-sm font-semibold">Admins</p>
                 </Link>

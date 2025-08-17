@@ -541,6 +541,9 @@ p, h1, h2, h3, h4, h5 {
 .mt-4 {
   margin-top: 1rem;
 }
+.mb-16 {
+  margin-bottom: 4rem;
+}
 .block {
   display: block;
 }
@@ -828,6 +831,9 @@ p, h1, h2, h3, h4, h5 {
 .pt-8 {
   padding-top: 2rem;
 }
+.pb-16 {
+  padding-bottom: 4rem;
+}
 .text-left {
   text-align: left;
 }
@@ -1082,6 +1088,9 @@ p, h1, h2, h3, h4, h5 {
 @media (min-width: 768px) {
   .md\:ml-4 {
     margin-left: 1rem;
+  }
+  .md\:mt-2 {
+    margin-top: 0.5rem;
   }
   .md\:block {
     display: block;

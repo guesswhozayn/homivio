@@ -1,25 +1,24 @@
-'use client';
+"use client";
 
-import { useState, useContext } from 'react';
-import { Metadata } from 'next';
-import { SiteContext, ContextProviderComponent } from '@/context/mainContext';
-import DENOMINATION from '@/utils/currencyProvider';
-import { FaLongArrowAltLeft } from 'react-icons/fa';
-import Link from 'next/link';
-import Image from '@/components/Image';
-import { v4 as uuid } from 'uuid';
+import { useState, useContext } from "react";
+import { SiteContext, ContextProviderComponent } from "@/context/mainContext";
+import DENOMINATION from "@/utils/currencyProvider";
+import { FaLongArrowAltLeft } from "react-icons/fa";
+import Link from "next/link";
+import Image from "@/components/Image";
+import { v4 as uuid } from "uuid";
 
 import {
   CardElement,
   Elements,
   useStripe,
   useElements,
-} from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+} from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 // Make sure to call `loadStripe` outside of a component's render to avoid
 // recreating the `Stripe` object on every render.
-const stripePromise = loadStripe('xxx-xxx-xxx');
+const stripePromise = loadStripe("xxx-xxx-xxx");
 
 const calculateShipping = () => {
   return 0;
@@ -40,12 +39,12 @@ function Checkout() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [orderCompleted, setOrderCompleted] = useState(false);
   const [input, setInput] = useState({
-    name: '',
-    email: '',
-    street: '',
-    city: '',
-    postal_code: '',
-    state: '',
+    name: "",
+    email: "",
+    street: "",
+    city: "",
+    postal_code: "",
+    state: "",
   });
 
   const stripe = useStripe();
@@ -76,7 +75,7 @@ function Checkout() {
 
     // Validate input
     if (!street || !city || !postal_code || !state) {
-      setErrorMessage('Please fill in the form!');
+      setErrorMessage("Please fill in the form!");
       return;
     }
 
@@ -86,19 +85,19 @@ function Checkout() {
     const cardElement = elements.getElement(CardElement);
 
     if (!cardElement) {
-      setErrorMessage('Card element not found');
+      setErrorMessage("Card element not found");
       return;
     }
 
     // Use your card Element with other Stripe.js APIs
     const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
+      type: "card",
       card: cardElement,
       billing_details: { name: name },
     });
 
     if (error) {
-      setErrorMessage(error.message || 'An error occurred');
+      setErrorMessage(error.message || "An error occurred");
       return;
     }
 
@@ -107,7 +106,7 @@ function Checkout() {
       amount: total,
       address: state, // should this be {street, city, postal_code, state} ?
       payment_method_id: paymentMethod?.id,
-      receipt_email: 'customer@example.com',
+      receipt_email: "customer@example.com",
       id: uuid(),
     };
     // TODO call API
@@ -150,9 +149,7 @@ function Checkout() {
                         src={item.image}
                         alt={item.name}
                       />
-                      <p className="m-0 pl-10 text-gray-600">
-                        {item.name}
-                      </p>
+                      <p className="m-0 pl-10 text-gray-600">{item.name}</p>
                       <div className="flex flex-1 justify-end">
                         <p className="m-0 pl-10 text-gray-900 font-semibold">
                           {DENOMINATION + item.price}
@@ -167,7 +164,7 @@ function Checkout() {
               <div className="flex flex-1 pt-8 flex-col">
                 <div className="mt-4 border-t pt-10">
                   <form onSubmit={handleSubmit}>
-                    {errorMessage ? <span>{errorMessage}</span> : ''}
+                    {errorMessage ? <span>{errorMessage}</span> : ""}
                     <Input
                       onChange={onChange}
                       value={input.name}
@@ -224,9 +221,7 @@ function Checkout() {
                 </div>
                 <div className="pl-4 flex flex-1 my-2">
                   <p className="text-sm pr-10">Shipping</p>
-                  <p className="w-38 flex justify-end">
-                    FREE SHIPPING
-                  </p>
+                  <p className="w-38 flex justify-end">FREE SHIPPING</p>
                 </div>
                 <div className="md:ml-4 pl-2 flex flex-1 bg-gray-200 pr-4 pb-1 pt-2 mt-2">
                   <p className="text-sm pr-10">Total</p>

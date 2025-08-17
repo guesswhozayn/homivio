@@ -1,13 +1,21 @@
-import { Center, Footer, Tag, Showcase, DisplaySmall, DisplayMedium } from '@/components';
-import { titleify, slugify } from '@/utils/helpers';
-import { fetchInventory } from '@/utils/inventoryProvider';
-import CartLink from '@/components/CartLink';
+import {
+  Center,
+  Footer,
+  Tag,
+  Showcase,
+  DisplaySmall,
+  DisplayMedium,
+} from "@/components";
+import { titleify, slugify } from "@/utils/helpers";
+import { fetchInventory } from "@/utils/inventoryProvider";
+import CartLink from "@/components/CartLink";
 
 export const metadata = {
-  title: 'ECommerce',
-  description: 'ECommerce Next provides a way to quickly get up and running with a fully configurable ECommerce site using Next.js.',
+  title: "Homivio - Modern E-commerce",
+  description:
+    "E-Commerce Next provides a way to quickly get up and running with a fully configurable E-Commerce site using Next.js.",
   openGraph: {
-    title: 'ECommerce',
+    title: "Homivio - Modern E-commerce",
   },
 };
 
@@ -16,8 +24,8 @@ export default async function Home() {
   const displayInventory = inventory.slice(0, 4);
 
   const inventoryCategorized = inventory.reduce((acc, next) => {
-    next.categories.forEach(c => {
-      const index = acc.findIndex(item => item.name === c);
+    next.categories.forEach((c) => {
+      const index = acc.findIndex((item) => item.name === c);
       if (index !== -1) {
         acc[index].itemCount += 1;
       } else {
@@ -49,7 +57,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      
+
       <div className="lg:my-8 lg:grid-cols-2 grid-cols-1 grid gap-4 my-4">
         {categories.map((category, index) => (
           <DisplayMedium
@@ -61,14 +69,15 @@ export default async function Home() {
           />
         ))}
       </div>
-      
+
       <div className="pt-10 pb-6 flex flex-col items-center">
         <h2 className="text-4xl mb-3">Trending Now</h2>
         <p className="text-gray-600 text-sm">
-          Find the perfect piece or accessory to finish off your favorite room in the house.
+          Find the perfect piece or accessory to finish off your favorite room
+          in the house.
         </p>
       </div>
-      
+
       <div className="my-8 flex flex-col lg:flex-row justify-between">
         {displayInventory.map((item, index) => (
           <DisplaySmall

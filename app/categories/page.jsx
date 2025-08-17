@@ -1,24 +1,23 @@
-import { Metadata } from 'next';
-import { titleify, slugify } from '@/utils/helpers';
-import { DisplayMedium } from '@/components';
-import CartLink from '@/components/CartLink';
-import { fetchInventory } from '@/utils/inventoryProvider';
+import { titleify, slugify } from "@/utils/helpers";
+import { DisplayMedium } from "@/components";
+import CartLink from "@/components/CartLink";
+import { fetchInventory } from "@/utils/inventoryProvider";
 
 export const metadata = {
-  title: 'ECommerce - All Categories',
-  description: 'ECommerce - All categories',
+  title: "Homivio - All Categories",
+  description: "Homivio - All Categories",
   openGraph: {
-    title: 'ECommerce - All Categories',
+    title: "Homivio - All Categories",
   },
 };
 
 export default async function Categories() {
   const inventory = await fetchInventory();
-  
+
   const inventoryCategories = inventory.reduce((acc, next) => {
     const categories = next.categories;
-    categories.forEach(c => {
-      const index = acc.findIndex(item => item.name === c);
+    categories.forEach((c) => {
+      const index = acc.findIndex((item) => item.name === c);
       if (index !== -1) {
         const item = acc[index];
         item.itemCount += 1;
@@ -27,7 +26,7 @@ export default async function Categories() {
         const item = {
           name: c,
           image: next.image,
-          itemCount: 1
+          itemCount: 1,
         };
         acc.push(item);
       }
@@ -44,17 +43,15 @@ export default async function Categories() {
         </div>
         <div className="flex flex-col items-center">
           <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
-            {
-              inventoryCategories.map((category, index) => (
-                <DisplayMedium
-                  key={index}
-                  imageSrc={category.image}
-                  subtitle={`${category.itemCount} items`}
-                  title={titleify(category.name)}
-                  link={`/category/${slugify(category.name)}`}
-                />
-              ))
-            }
+            {inventoryCategories.map((category, index) => (
+              <DisplayMedium
+                key={index}
+                imageSrc={category.image}
+                subtitle={`${category.itemCount} items`}
+                title={titleify(category.name)}
+                link={`/category/${slugify(category.name)}`}
+              />
+            ))}
           </div>
         </div>
       </div>
