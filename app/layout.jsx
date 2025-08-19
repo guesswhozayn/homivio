@@ -95,7 +95,8 @@ async function RootLayout({ children }) {
             "
             >
               <span className="block text-gray-700 text-xs">
-                Copyright © 2024 HOMIVIO. All rights reserved.
+                Copyright © 2025 Designed and Developed by Zayn. All rights
+                reserved.
               </span>
               <div
                 className="
