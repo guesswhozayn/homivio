@@ -16,25 +16,21 @@ export default function Admin() {
 
   const signUp = async (form) => {
     const { username, email, password } = form;
-    // sign up logic would go here
     setFormState("confirmSignUp");
   };
 
   const confirmSignUp = async (form) => {
     const { username, authcode } = form;
-    // confirm sign up logic would go here
     setFormState("signIn");
   };
 
   const signIn = async (form) => {
     const { username, password } = form;
-    // sign in logic would go here
     setFormState("signedIn");
     setIsAdmin(true);
   };
 
   const signOut = async () => {
-    // sign out logic would go here
     setFormState("signUp");
     setIsAdmin(false);
   };

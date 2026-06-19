@@ -28,7 +28,6 @@ function ViewInventory() {
   const saveItem = async (index) => {
     const updatedInventory = [...inventory]
     updatedInventory[index] = currentItem
-    // update item in database
     setEditingIndex(null)
     setInventory(updatedInventory)
   }

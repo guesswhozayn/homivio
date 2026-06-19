@@ -1,15 +1,15 @@
-import inventory from './inventory'
+import inventory from "./inventory";
 
 async function fetchCategories() {
   const categories = inventory.reduce((acc, next) => {
-    next.categories.forEach(category => {
+    next.categories.forEach((category) => {
       if (!acc.includes(category)) {
-        acc.push(category)
+        acc.push(category);
       }
-    })
-    return acc
-  }, [])
-  return categories
+    });
+    return acc;
+  }, []);
+  return categories;
 }
 
-export default fetchCategories
+export default fetchCategories;

@@ -1,5 +1,7 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import React, { useState, useEffect, useCallback } from "react";
 
 const STORAGE_KEY = "NEXT_ECOMMERCE_STARTER_";
 
@@ -20,12 +22,6 @@ function calculateTotal(cart) {
 
 function ContextProviderComponent({ children }) {
   const [state, setState] = useState(initialState);
-  const [forceUpdateCounter, setForceUpdateCounter] = useState(0);
-
-  // Force update function to replace this.forceUpdate()
-  const forceUpdate = useCallback(() => {
-    setForceUpdateCounter((prev) => prev + 1);
-  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {

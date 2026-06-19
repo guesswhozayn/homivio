@@ -4,8 +4,7 @@ import { useState, useContext, useEffect } from 'react';
 import Button from '@/components/Button';
 import Image from '@/components/Image';
 import QuantityPicker from '@/components/QuantityPicker';
-import CartLink from '@/components/CartLink';
-import { SiteContext, ContextProviderComponent } from '@/context/mainContext';
+import { SiteContext } from '@/context/mainContext';
 
 function ItemView({ product }) {
   const [numberOfItems, updateNumberOfItems] = useState(1);
@@ -34,7 +33,6 @@ function ItemView({ product }) {
 
   return (
     <>
-      <CartLink />
       <div className="
         sm:py-12
         md:flex-row
@@ -81,9 +79,5 @@ export default function ProductClient({ product }) {
     return <div>Loading...</div>;
   }
 
-  return (
-    <ContextProviderComponent>
-      <ItemView product={product} />
-    </ContextProviderComponent>
-  );
+  return <ItemView product={product} />;
 }

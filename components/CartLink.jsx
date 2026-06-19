@@ -1,20 +1,27 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { ContextProviderComponent, SiteContext } from '../context/mainContext'
-import { FaShoppingCart, FaCircle } from 'react-icons/fa'
-import Link from 'next/link'
-import { colors } from '../theme'
+import { useState, useEffect, useContext } from "react";
+import { SiteContext } from "../context/mainContext";
+import { FaShoppingCart, FaCircle } from "react-icons/fa";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { colors } from "../theme";
 
-const { primary } = colors
+const { primary } = colors;
 
-function CartLink({ context }) {
-  const { numberOfItemsInCart = 0 } = context || {}
-  const [renderClientSideComponent, setRenderClientSideComponent] = useState(false)
+function CartLink() {
+  const context = useContext(SiteContext);
+  const { numberOfItemsInCart = 0 } = context || {};
+  const [renderClientSideComponent, setRenderClientSideComponent] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    setRenderClientSideComponent(true)
-  }, [])
+    setRenderClientSideComponent(true);
+  }, []);
+
+  if (pathname === "/cart" || pathname === "/checkout") {
+    return null;
+  }
 
   return (
     <div>
@@ -29,22 +36,7 @@ function CartLink({ context }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-function CartLinkWithContext(props) {
-  return (
-    <ContextProviderComponent>
-      <SiteContext.Consumer>
-        {context => (
-          <CartLink
-            {...props}
-            context={context ?? { numberOfItemsInCart: 0 }}
-          />
-        )}
-      </SiteContext.Consumer>
-    </ContextProviderComponent>
-  )
-}
-
-export default CartLinkWithContext
+export default CartLink;
