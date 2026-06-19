@@ -8,7 +8,6 @@ import {
 } from "@/components";
 import { titleify, slugify } from "@/utils/helpers";
 import { fetchInventory } from "@/utils/inventoryProvider";
-import CartLink from "@/components/CartLink";
 
 export const metadata = {
   title: "Homivio - Modern E-commerce",
@@ -39,7 +38,6 @@ export default async function Home() {
 
   return (
     <>
-      <CartLink />
       <div className="w-full">
         <div className="bg-blue-300 p-6 pb-10 smpb-6 flex lg:flex-row flex-col">
           <div className="pt-4 pl-2 sm:pt-12 sm:pl-12 flex flex-col">

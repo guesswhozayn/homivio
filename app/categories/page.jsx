@@ -1,6 +1,5 @@
 import { titleify, slugify } from "@/utils/helpers";
 import { DisplayMedium } from "@/components";
-import CartLink from "@/components/CartLink";
 import { fetchInventory } from "@/utils/inventoryProvider";
 
 export const metadata = {
@@ -37,7 +36,6 @@ export default async function Categories() {
   return (
     <>
       <div className="w-full">
-        <CartLink />
         <div className="pt-4 sm:pt-10 pb-8">
           <h1 className="text-5xl font-light">All categories</h1>
         </div>

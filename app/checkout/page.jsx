@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useContext } from "react";
-import { SiteContext, ContextProviderComponent } from "@/context/mainContext";
+import { SiteContext } from "@/context/mainContext";
 import DENOMINATION from "@/utils/currencyProvider";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import Link from "next/link";
@@ -16,9 +16,9 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-// Make sure to call `loadStripe` outside of a component's render to avoid
-// recreating the `Stripe` object on every render.
-const stripePromise = loadStripe("xxx-xxx-xxx");
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "pk_test_placeholder"
+);
 
 const calculateShipping = () => {
   return 0;
@@ -68,20 +68,14 @@ function Checkout() {
     const { name, email, street, city, postal_code, state } = input;
 
     if (!stripe || !elements) {
-      // Stripe.js has not loaded yet. Make sure to disable
-      // form submission until Stripe.js has loaded.
       return;
     }
 
-    // Validate input
     if (!street || !city || !postal_code || !state) {
       setErrorMessage("Please fill in the form!");
       return;
     }
 
-    // Get a reference to a mounted CardElement. Elements knows how
-    // to find your CardElement because there can only ever be one of
-    // each type of element.
     const cardElement = elements.getElement(CardElement);
 
     if (!cardElement) {
@@ -89,7 +83,6 @@ function Checkout() {
       return;
     }
 
-    // Use your card Element with other Stripe.js APIs
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: cardElement,
@@ -104,12 +97,11 @@ function Checkout() {
     const order = {
       email,
       amount: total,
-      address: state, // should this be {street, city, postal_code, state} ?
+      address: state,
       payment_method_id: paymentMethod?.id,
       receipt_email: "customer@example.com",
       id: uuid(),
     };
-    // TODO call API
     setOrderCompleted(true);
     clearCart();
   };
@@ -246,14 +238,10 @@ function Checkout() {
   );
 }
 
-function CheckoutWithContext() {
+export default function CheckoutPage() {
   return (
-    <ContextProviderComponent>
-      <Elements stripe={stripePromise}>
-        <Checkout />
-      </Elements>
-    </ContextProviderComponent>
+    <Elements stripe={stripePromise}>
+      <Checkout />
+    </Elements>
   );
 }
-
-export default CheckoutWithContext;

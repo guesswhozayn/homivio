@@ -18,15 +18,11 @@ function AddInventory() {
   const onImageChange = (e) => {
     const file = e.target.files?.[0]
     setFormData(prev => ({ ...prev, image: file || '' }))
-    // Example for storage upload:
-    // const storageUrl = await Storage.put('example.png', file, { contentType: 'image/png' })
-    // setFormData(prev => ({ ...prev, image: storageUrl }))
   }
 
   const addItem = () => {
     const { name, brand, price, categories, image, description, currentInventory } = formData
     if (!name || !brand || !price || !categories || !description || !currentInventory || !image) return
-    // add to database logic
     clearForm()
   }
 

@@ -3,12 +3,11 @@
 import Link from 'next/link';
 import { useState, useEffect, useContext } from 'react';
 import { FaTimes, FaLongArrowAltRight } from 'react-icons/fa';
-import { SiteContext, ContextProviderComponent } from '@/context/mainContext';
+import { SiteContext } from '@/context/mainContext';
 import DENOMINATION from '@/utils/currencyProvider';
 import { slugify } from '@/utils/helpers';
 import QuantityPicker from '@/components/QuantityPicker';
 import Image from '@/components/Image';
-import CartLink from '@/components/CartLink';
 
 function Cart() {
   const [renderClientSideComponent, setRenderClientSideComponent] = useState(false);
@@ -47,7 +46,6 @@ function Cart() {
 
   return (
     <>
-      <CartLink />
       <div className="flex flex-col items-center pb-10">
         <div className="flex flex-col w-full c_large:w-c_large">
           <div className="pt-10 pb-8">
@@ -62,7 +60,6 @@ function Cart() {
                 {cart.map((item) => {
                   return (
                     <div className="border-b py-10" key={item.id}>
-                      {/* Desktop */}
                       <div className="items-center hidden md:flex">
                         <Link href={`/product/${slugify(item.name)}`} aria-label={item.name}>
                           <Image className="w-32 m-0" src={item.image} alt={item.name} />
@@ -94,7 +91,6 @@ function Cart() {
                         </div>
                       </div>
 
-                      {/* Mobile */}
                       <div className="flex items-center md:hidden">
                         <Link href={`/product/${slugify(item.name)}`}>
                           <Image className="w-32 m-0" src={item.image} alt={item.name} />
@@ -152,12 +148,4 @@ function Cart() {
   );
 }
 
-function CartWithContext() {
-  return (
-    <ContextProviderComponent>
-      <Cart />
-    </ContextProviderComponent>
-  );
-}
-
-export default CartWithContext;
+export default Cart;

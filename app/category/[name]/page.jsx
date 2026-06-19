@@ -2,7 +2,7 @@ import ListItem from "@/components/ListItem";
 import { titleify, slugify } from "@/utils/helpers";
 import fetchCategories from "@/utils/categoryProvider";
 import inventoryForCategory from "@/utils/inventoryForCategory";
-import CartLink from "@/components/CartLink";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const categories = await fetchCategories();
@@ -28,13 +28,19 @@ export async function generateMetadata({ params }) {
 
 export default async function Category({ params }) {
   const resolvedParams = await params;
+  const categories = await fetchCategories();
+  const isValid = categories.some((c) => slugify(c) === resolvedParams.name);
+
+  if (!isValid) {
+    notFound();
+  }
+
   const category = resolvedParams.name.replace(/-/g, " ");
   const inventory = await inventoryForCategory(category);
   const title = titleify(category);
 
   return (
     <>
-      <CartLink />
       <div className="flex flex-col items-center">
         <div className="max-w-fw flex flex-col w-full">
           <div className="pt-4 sm:pt-10 pb-8">
